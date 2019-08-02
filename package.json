@@ -1,0 +1,27 @@
+{
+  "name": "accesscontrol",
+  "version": "1.0.0",
+  "description": "mock access control endpoint for sgworkpass 2.0 poc",
+  "main": "handler.js",
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-all": "sls deploy",
+    "remove-all": "sls remove",
+    "deploy": "sls deploy function --function",
+    "invoke": "sls invoke --log --function"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgworkpass/acess_control_mock.git"
+  },
+  "author": "yukun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgworkpass/acess_control_mock/issues"
+  },
+  "homepage": "https://github.com/sgworkpass/acess_control_mock#readme"
+}

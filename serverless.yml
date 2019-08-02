@@ -27,7 +27,8 @@ provider:
     BOT_API_KEY: ${self:custom.SECRETS.BOT_API_KEY}
     CHANNEL_ID: ${self:custom.SECRETS.CHANNEL_ID}
     #LAMBDA_ACCESS_KEY: future plan
-    TEST: "ASD"
+    STAGE: "dev"
+    TEST_CHANNEL: 226056507
 custom:
   SECRETS: ${ssm:/aws/reference/secretsmanager/workpass/mock_endpoint~true}
 # you can overwrite defaults here
@@ -62,13 +63,22 @@ custom:
 functions:
   hello:
     handler: handler.hello
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
     events:
       - http:
           path: hello
           method: get
+  sendTestMessage:
+    handler: handler.sendTestMessage
+    events:
+      - http:
+          path: /post/testmessage
+          method: post
+  getRequirement:
+    handler: handler.getRequirement
+    events:
+      - http:
+          path: /get/requirements
+          method: post
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
