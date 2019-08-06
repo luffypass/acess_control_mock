@@ -14,7 +14,8 @@
 service: accesscontrol
 app: accesscontrol-app
 org: yykcool
-
+plugins:
+  - serverless-offline
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -33,7 +34,7 @@ custom:
   SECRETS: ${ssm:/aws/reference/secretsmanager/workpass/mock_endpoint~true}
 # you can overwrite defaults here
 #  stage: dev
-# you can add statements to the Lambda function's IAM Role here
+# you can add statements to the Lambda fungiction's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
@@ -78,6 +79,12 @@ functions:
     events:
       - http:
           path: /get/requirements
+          method: get
+  postRequirement:
+    handler: handler.postRequirement
+    events:
+      - http:
+          path: /post/requirements
           method: post
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}

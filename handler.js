@@ -1,10 +1,8 @@
 'use strict';
-
-const axios = require("axios");
+const services = require("./services");
 
 module.exports.hello = async (event, context, callback) => {
-  const apiKey = process.env.BOT_API_KEY;
-  const channel = process.env.CHANNEL_ID;
+
 
   return {
     statusCode: 200,
@@ -23,29 +21,12 @@ module.exports.hello = async (event, context, callback) => {
 };
 
 module.exports.sendTestMessage = async ( event, context, callback ) => {
-  const apiKey = process.env.BOT_API_KEY;
-  const channel = process.env.STAGE === "dev" ? process.env.TEST_CHANNEL : process.env.CHANNEL_ID;
-
-  const url = `https://api.telegram.org/bot${apiKey}/sendMessage`
-  const result = await axios(
-    {
-      method: "post",
-      url,
-      responseType: "json",
-      data: {
-        chat_id: channel,
-        text: "I am Alive!!!"
-      }
-    }
-  );
-  console.log(JSON.parse(result));
-
+  const result = await services.sendMessage("HI");
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
         message: 'message sent',
-        input: event,
       },
       null,
       2
@@ -58,7 +39,52 @@ module.exports.getRequirement = async ( event, context, callback ) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      details: ["name", "age", "photo", "expiry_date"]
+      endpoint: "https://workpass.brightsteel.dev/post/requirements",
+      details: ["recipient.name", "recipient.dob", "recipient.photo", "pass.expiryDate"]
     }, null, 2)
   }
+}
+
+module.exports.postRequirement = async ( event, context, callback ) => {
+
+  // console.log(context)
+  // console.log(callback)
+  const {recipient, pass} = JSON.parse(event.body);
+
+
+  if(!recipient.name){
+    return {
+      message: "missing name"
+    }
+  }
+
+  if(!recipient.dob){
+    return {
+      message: "missing date of birth"
+    }
+  }
+
+  if(!recipient.photo){
+    return{
+      message: "missing photio"
+    }
+  }
+
+  if(!pass.expiryDate){
+    return {
+      message: "missing expiry date"
+    }
+  }
+
+
+  // const result = await services.sendDetails({recipient, pass});
+  // await services.sendMessage("next");
+  const {err, res, body} = await services.sendPushNotif({
+    recipient,pass
+  });
+  
+  return {
+    statusCode:200,
+    body
+  };
 }
