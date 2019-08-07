@@ -6,7 +6,7 @@ const { verifyUrl, contractStore } = require("./constants");
 
 // extended status enums in anticipation of future changes
 /* eslint-disable no-unused-vars */
-const erificationStatusEnum = {
+const verificationStatusEnum = {
   VALID: 0,
   EXPIRED: 1,
   TAMPERED: 2,

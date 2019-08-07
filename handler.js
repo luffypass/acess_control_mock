@@ -33,8 +33,10 @@ module.exports.sendTestMessage = async ( event, context, callback ) => {
   };
 } 
 
+const wait = timeout => new Promise((resolve) => {setTimeout(resolve, timeout);})
 
 module.exports.getRequirement = async ( event, context, callback ) => {
+  await wait(2000);
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -78,10 +80,10 @@ module.exports.postRequirement = async ( event, context, callback ) => {
 
   // const result = await sendDetails({recipient, pass});
   // await sendMessage("next");
-  const {err, res, body} = await sendPushNotif(workpass);
+  const response = await sendPushNotif(workpass);
+  console.log(response);
   return {
     statusCode:200,
-    body,
-    message:"success"
+    body: JSON.stringify(response),
   };
 }

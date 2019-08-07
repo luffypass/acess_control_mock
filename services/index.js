@@ -6,6 +6,7 @@ const request = require("request")
 const util = require("util");
 const {getData} = require("@govtechsg/open-attestation");
 const { formatDate, getCurrentDateAndTime} = require("./date");
+const { verifyWorkpassBoolean } = require("./verificationService");
 const {
   chat_id,
   sendMessageUrl,
@@ -29,12 +30,13 @@ const sendMessage = async text => {
 
   return result.data;
 }
-const getCaption = data => {
-
+const getCaption = async ({recipient, pass, doc}) => {
+  const isValid = await verifyWorkpassBoolean(doc);
   const caption = `Timestamp: ${getCurrentDateAndTime()}\
-  \nName:\t${data.recipient.name}\
-  \nDate of birth:\t${formatDate(data.recipient.dob)}\
-  \nExpiry:\t${formatDate(data.pass.expiryDate)}`
+  \nName:\t${recipient.name}\
+  \nDate of birth:\t${formatDate(recipient.dob)}\
+  \nExpiry:\t${formatDate(pass.expiryDate)}\
+  \nStatus:\t${isValid ? "VALID" : "INVALID"}`
 
   return caption;
 }
@@ -50,7 +52,7 @@ const sendPushNotif = async doc => {
   const photo =  fs.createReadStream("/tmp/2.jpeg")
 
 
-  const caption = getCaption({recipient, pass})
+  const caption = await getCaption({recipient, pass, doc})
 
   const formData ={
     // "chat_id": "68622638",
@@ -72,7 +74,7 @@ const sendPushNotif = async doc => {
 
   const deleteFile = await util.promisify(fs.unlink);
   await deleteFile("/tmp/2.jpeg");
-  return {err, res, body}
+  return JSON.parse(body)
 
 }
 
