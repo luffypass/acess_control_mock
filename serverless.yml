@@ -31,6 +31,7 @@ provider:
     STAGE: "dev"
     TEST_CHANNEL: 226056507
 custom:
+#  KEYS ARE STORED IN AWS SECRETS MANAGER
   SECRETS: ${ssm:/aws/reference/secretsmanager/workpass/mock_endpoint~true}
 # you can overwrite defaults here
 #  stage: dev

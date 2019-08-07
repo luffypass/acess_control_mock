@@ -1,6 +1,5 @@
 'use strict';
-const services = require("./services");
-
+const {sendMessage, sendPushNotif} = require("./services");
 module.exports.hello = async (event, context, callback) => {
 
 
@@ -21,7 +20,7 @@ module.exports.hello = async (event, context, callback) => {
 };
 
 module.exports.sendTestMessage = async ( event, context, callback ) => {
-  const result = await services.sendMessage("HI");
+  const result = await sendMessage("HI");
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -49,9 +48,9 @@ module.exports.postRequirement = async ( event, context, callback ) => {
 
   // console.log(context)
   // console.log(callback)
-  const {recipient, pass} = JSON.parse(event.body);
-
-
+  const doc = JSON.parse(event.body);
+  const workpass = doc.document
+  const {recipient, pass} = workpass.data;
   if(!recipient.name){
     return {
       message: "missing name"
@@ -77,14 +76,12 @@ module.exports.postRequirement = async ( event, context, callback ) => {
   }
 
 
-  // const result = await services.sendDetails({recipient, pass});
-  // await services.sendMessage("next");
-  const {err, res, body} = await services.sendPushNotif({
-    recipient,pass
-  });
-  
+  // const result = await sendDetails({recipient, pass});
+  // await sendMessage("next");
+  const {err, res, body} = await sendPushNotif(workpass);
   return {
     statusCode:200,
-    body
+    body,
+    message:"success"
   };
 }
