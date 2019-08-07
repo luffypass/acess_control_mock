@@ -16,6 +16,7 @@ app: accesscontrol-app
 org: yykcool
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -25,14 +26,13 @@ provider:
   runtime: nodejs10.x
   region: ap-southeast-1
   environment:
-    BOT_API_KEY: ${self:custom.SECRETS.BOT_API_KEY}
-    CHANNEL_ID: ${self:custom.SECRETS.CHANNEL_ID}
+    BOT_API_KEY: ${env:BOT_API_KEY}
+    CHANNEL_ID: ${env:TARGET_CHANNEL}
     #LAMBDA_ACCESS_KEY: future plan
     STAGE: "dev"
     TEST_CHANNEL: 226056507
 custom:
 #  KEYS ARE STORED IN AWS SECRETS MANAGER
-  SECRETS: ${ssm:/aws/reference/secretsmanager/workpass/mock_endpoint~true}
 # you can overwrite defaults here
 #  stage: dev
 # you can add statements to the Lambda fungiction's IAM Role here
