@@ -10,6 +10,7 @@
     "form-data": "^2.5.0",
     "moment-timezone": "^0.5.26",
     "request": "^2.88.0",
+    "serverless-dotenv-plugin": "^2.1.1",
     "stream-buffers": "^3.0.2"
   },
   "devDependencies": {
