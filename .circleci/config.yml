@@ -18,7 +18,7 @@ jobs:
   #         command: npm install
       - run:
           name: deploy_aws_prd
-          command: ls
+          command: ./scripts/deploy_production.sh
 workflows:
   version: 2
   test_and_publish:
