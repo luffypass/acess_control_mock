@@ -1,4 +1,4 @@
-service: accesscontrol
+service: dlt-workpass-telegram-bot
 
 provider:
   name: aws

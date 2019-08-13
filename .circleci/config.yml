@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: npm install
+  # deploy_master:
+  #   docker:
+  #     - image: 'circleci/node:latest'
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: install
+  #         command: npm install
+      - run:
+          name: deploy_aws_prd
+          command: ls
+workflows:
+  version: 2
+  test_and_publish:
+    jobs:
+      - build
+      - deploy_master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
