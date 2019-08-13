@@ -2,10 +2,10 @@
 node_modules
 jspm_packages
 
+.env
 
 # Serverless directories
 .serverless
 
 #mac
 .DS_Store
-.gitignore
