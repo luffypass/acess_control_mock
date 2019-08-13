@@ -12,8 +12,9 @@
 # Happy Coding!
 
 service: accesscontrol
-app: accesscontrol-app
-org: yykcool
+app: workpasssg
+org: samuellye98
+tenant: samuellye98
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
@@ -24,13 +25,12 @@ plugins:
 provider:
   name: aws
   runtime: nodejs10.x
+  profile: serverless
   region: ap-southeast-1
   environment:
     BOT_API_KEY: ${env:BOT_API_KEY}
-    CHANNEL_ID: ${env:TARGET_CHANNEL}
+    CHANNEL_ID: ${env:TARGET_CHANNEL_ID}
     #LAMBDA_ACCESS_KEY: future plan
-    STAGE: "dev"
-    TEST_CHANNEL: 226056507
 custom:
 #  KEYS ARE STORED IN AWS SECRETS MANAGER
 # you can overwrite defaults here
