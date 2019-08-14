@@ -9,18 +9,6 @@ provider:
     CHANNEL_ID: ${env:TARGET_CHANNEL_ID}
 
 functions:
-  sendTestMessage:
-    handler: handler.sendTestMessage
-    events:
-      - http:
-          path: /post/testmessage
-          method: post
-  getRequirement:
-    handler: handler.getRequirement
-    events:
-      - http:
-          path: /get/requirements
-          method: get
   postRequirement:
     handler: handler.postRequirement
     events:

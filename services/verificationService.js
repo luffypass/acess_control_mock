@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { getData } = require("@govtechsg/open-attestation");
 const { checkIfExpired } = require("./date");
-const { verifyUrl, contractStore } = require("./constants");
+const { verifyUrl, contractStore } = require("../constants");
 // is this a secret?
 
 // extended status enums in anticipation of future changes
@@ -13,7 +13,7 @@ const verificationStatusEnum = {
   REVOKED: 3,
   INVALID_ISSUER: 4,
   INVALID: 5
-}
+};
 /* eslint-enable */
 
 const verifyWorkpass = async document => {
@@ -51,4 +51,4 @@ const verifyWorkpassBoolean = async document => {
 
 module.exports = {
   verifyWorkpassBoolean
-}
+};

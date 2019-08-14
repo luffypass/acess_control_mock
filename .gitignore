@@ -1,10 +1,8 @@
 # package directories
-node_modules
+node_modules/**/*
 
 .env
 
 # Serverless directories
 .serverless
-
-#mac
 .DS_Store

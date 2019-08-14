@@ -8,7 +8,16 @@
     "axios": "^0.19.0",
     "moment-timezone": "^0.5.26",
     "request": "^2.88.0",
-    "serverless": "^1.49.0"
+    "serverless": "^1.49.0",
+    "prettier": "1.18.2",
+    "babel-eslint": "10.0.2",
+    "eslint": "6.0.0",
+    "eslint-config-airbnb-base": "13.2.0",
+    "eslint-config-prettier": "5.0.0",
+    "eslint-plugin-import": "2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-react": "^7.14.3"
   },
   "devDependencies": {
     "serverless-dotenv-plugin": "^2.1.1",
@@ -17,7 +26,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "sls deploy",
-    "invoke": "sls invoke --log --function"
+    "invoke": "sls invoke --log --function",
+    "lint": "./node_modules/.bin/eslint . --ext js,ts,tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
