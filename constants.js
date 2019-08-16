@@ -11,7 +11,7 @@ const sendPhotoUrl = `https://api.telegram.org/bot${apiKey}/sendPhoto`;
 const TIMEZONE = "Asia/Singapore";
 
 const verifyUrl = "https://api-ropsten.opencerts.io/verify";
-const contractStore = ["0x590F8DFFdb113e1Dcf4974DEaA9b52A8251cec29"];
+const contractStore = ["0x2E78f5B281db0326F287241c6CADc2BB8A9F735f"];
 module.exports = {
   apiKey,
   stage,
