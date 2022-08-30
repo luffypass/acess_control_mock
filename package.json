@@ -6,7 +6,7 @@
   "dependencies": {
     "@govtechsg/open-attestation": "^1.1.39",
     "axios": "^0.19.0",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "^0.5.35",
     "request": "^2.88.0",
     "serverless": "^1.49.0",
     "prettier": "1.18.2",
