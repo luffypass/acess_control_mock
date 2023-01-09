@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "serverless-dotenv-plugin": "^2.1.1",
-    "serverless-offline": "^5.9.0"
+    "serverless-offline": "^12.0.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
